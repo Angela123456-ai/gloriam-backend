@@ -776,18 +776,19 @@ pool = mysql.createPool({
     rejectUnauthorized: false
   }
 })
-      await pool.query('SELECT 1')
-      await ensureSchema()
-      await ensureDefaultAdmin()
-      dbReady = true
-    } catch (error) {
-      dbReady = false
-      pool = null
-      console.error('Database init failed. Running with limited auth mode:', error.message)
-    }
-  })()
+ await pool.query('SELECT 1')
 
-  return initPromise
+  console.log('✅ Database connection successful')
+
+  await ensureSchema()
+  await ensureDefaultAdmin()
+
+  dbReady = true
+} catch (error) {
+  dbReady = false
+  pool = null
+  console.error('❌ Database connection failed:')
+  console.error(error)
 }
 
 if (require.main === module) {
