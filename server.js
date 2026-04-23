@@ -33,7 +33,8 @@ let memoryUserIdCounter = 1
 const memoryRegistrations = []
 let memoryRegistrationIdCounter = 1
 
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:5174')
+const allowedOrigins = (process.env.ALLOWED_ORIGINS ||
+  'https://gloriam.rw,http://localhost:5173,http://localhost:5174')
   .split(',')
   .map((item) => item.trim())
   .filter(Boolean)
