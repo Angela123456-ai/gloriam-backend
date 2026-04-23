@@ -760,36 +760,43 @@ async function initializeApp() {
   initPromise = (async () => {
     if (NODE_ENV === 'production' && JWT_SECRET === 'gloriam-school-secret-key') {
       console.warn(
-        'JWT_SECRET is using default value. Set a strong JWT_SECRET in Netlify environment variables.',
+        'JWT_SECRET is using default value. Set a strong JWT_SECRET in environment variables.',
       )
     }
 
     try {
-pool = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-  connectionLimit: 10,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
- await pool.query('SELECT 1')
+      pool = mysql.createPool({
+        host: DB_HOST,
+        port: DB_PORT,
+        user: DB_USER,
+        password: DB_PASSWORD,
+        database: DB_NAME,
+        connectionLimit: 10,
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      })
 
-  console.log('✅ Database connection successful')
+      await pool.query('SELECT 1')
 
-  await ensureSchema()
-  await ensureDefaultAdmin()
+      console.log('✅ Database connection successful')
 
-  dbReady = true
-} catch (error) {
-  dbReady = false
-  pool = null
-  console.error('❌ Database connection failed:')
-  console.error(error)
+      await ensureSchema()
+      await ensureDefaultAdmin()
+
+      dbReady = true
+    } catch (error) {
+      dbReady = false
+      pool = null
+
+      console.error('❌ Database connection failed:')
+      console.error(error.message)
+    }
+  })()
+
+  return initPromise
 }
+
 
 if (require.main === module) {
   startServer().catch((error) => {
@@ -799,4 +806,3 @@ if (require.main === module) {
 }
 
 module.exports = { app, initializeApp, startServer }
-
