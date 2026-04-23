@@ -19,11 +19,11 @@ const JWT_SECRET = process.env.JWT_SECRET || 'gloriam-school-secret-key'
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const FORCE_HTTPS = process.env.FORCE_HTTPS === 'true'
 
-const DB_HOST = process.env.DB_HOST || 'localhost'
-const DB_PORT = Number(process.env.DB_PORT || 5000)
-const DB_USER = process.env.DB_USER || 'xoqxampf_gloriam_user'
-const DB_PASSWORD = process.env.DB_PASSWORD || 'gloriam_user'
-const DB_NAME = process.env.DB_NAME || 'xoqxampf_gloriam_db'
+const DB_HOST = process.env.DB_HOST || 'mysql-10652c31-angelazigama12-0ec7.h.aivencloud.com'
+const DB_PORT = Number(process.env.DB_PORT || 21538)
+const DB_USER = process.env.DB_USER || 'avnadmin'
+const DB_PASSWORD = process.env.DB_PASSWORD || '<redacted>'
+const DB_NAME = process.env.DB_NAME || 'defaultdb'
 
 let pool
 let initPromise = null
