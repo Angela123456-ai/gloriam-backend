@@ -22,7 +22,7 @@ const FORCE_HTTPS = process.env.FORCE_HTTPS === 'true'
 const DB_HOST = process.env.DB_HOST || 'mysql-10652c31-angelazigama12-0ec7.h.aivencloud.com'
 const DB_PORT = Number(process.env.DB_PORT || 21538)
 const DB_USER = process.env.DB_USER || 'avnadmin'
-const DB_PASSWORD = process.env.DB_PASSWORD || '<redacted>'
+const DB_PASSWORD = process.env.DB_PASSWORD || 'AVNS_t2JzpLruq1lKgZJPaAj'
 const DB_NAME = process.env.DB_NAME || 'defaultdb'
 
 let pool
