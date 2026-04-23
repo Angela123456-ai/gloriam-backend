@@ -765,14 +765,17 @@ async function initializeApp() {
     }
 
     try {
-      pool = mysql.createPool({
-        host: DB_HOST,
-        port: DB_PORT,
-        user: DB_USER,
-        password: DB_PASSWORD,
-        database: DB_NAME,
-        connectionLimit: 10,
-      })
+pool = mysql.createPool({
+  host: DB_HOST,
+  port: DB_PORT,
+  user: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+  connectionLimit: 10,
+  ssl: {
+    rejectUnauthorized: false
+  }
+})
       await pool.query('SELECT 1')
       await ensureSchema()
       await ensureDefaultAdmin()
